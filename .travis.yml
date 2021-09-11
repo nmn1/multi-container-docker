@@ -11,16 +11,16 @@ script:
   - docker run -e CI=true naman01/react-test npm test
 
 after_success:
-  - docker build -t naman01/my_docker_repo/multi-client ./client
-  - docker build -t naman01/my_docker_repo/multi-nginx ./nginx 
-  - docker build -t naman01/my_docker_repo/multi-server ./server
-  - docker build -t naman01/my_docker_repo/multi-worker ./worker
+  - docker build -t naman01/multi-client ./client
+  - docker build -t naman01/multi-nginx ./nginx 
+  - docker build -t naman01/multi-server ./server
+  - docker build -t naman01/multi-worker ./worker
   # Login to Docker Hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # Take these images and push to Docker hub
-  - docker push naman01/my_docker_repo/multi-client
-  - docker push naman01/my_docker_repo/multi-nginx
-  - docker push naman01/my_docker_repo/multi-server
-  - docker push naman01/my_docker_repo/multi-worker
+  - docker push naman01/multi-client
+  - docker push naman01/multi-nginx
+  - docker push naman01/multi-server
+  - docker push naman01/multi-worker
 

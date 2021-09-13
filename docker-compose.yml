@@ -3,9 +3,11 @@ version: '3'
 services: 
   client:
     image: "naman01/multi-client"
+    mem_limit: 128m
     hostname: client
   server:
     image: "naman01/multi-server"  
+    mem_limit: 128m
     hostname: api
     environment:
       - REDIS_HOST=$REDIS_HOST
@@ -16,12 +18,14 @@ services:
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   worker:
-    image: "naman01/multi-worker" 
+    image: "naman01/multi-worker"
+    mem_limit: 128m 
     hostname: worker 
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
     image: "naman01/multi-nginx"
+    mem_limit: 128m
     ports: 
       - "80:80"
